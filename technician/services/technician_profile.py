@@ -7,16 +7,18 @@ from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
 
 
-class UserRegisterProfileService:
+class TechnicianRegisterProfileService:
     @staticmethod
     @transaction.atomic
-    def create_userprofile(
+    def create_technician_profile(
             password,
             username=None,
             email=None,
             fullname=None,
             phone_no=None,
-            is_user=True,
+            visiting_charges=None,
+            categories=None,
+            is_techinician=True,
            
             
     ):
@@ -27,7 +29,9 @@ class UserRegisterProfileService:
                 email=email,
                 fullname=fullname,
                 phone_no=phone_no,
-                is_user=is_user
+                visiting_charges=visiting_charges,
+                categories=categories,
+                is_techinician=is_techinician,
             ) 
             userprofile.set_password(password)
             userprofile.save()
@@ -37,14 +41,14 @@ class UserRegisterProfileService:
             raise e
         
     @staticmethod
-    def login_userprofile(
+    def login_technician_profile(
 
             username,
             password,
 
     ):
         try:
-            get_user = UserProfile.objects.filter(username=username,is_user=True).last()
+            get_user = UserProfile.objects.filter(username=username,is_techinician=True).last()
             if get_user:
 
                 user = authenticate(username=get_user.username, password=password)
