@@ -11,6 +11,8 @@ class TechnicianProfileInputSerializer(serializers.Serializer):
     visiting_charges= serializers.CharField(required=True)
     password=serializers.CharField(required=True)
     is_techinician = serializers.BooleanField(default=True)
+    # is_techinician = serializers.BooleanField(default=True)
+    # is_techinician = serializers.BooleanField(default=True)
 
 class TechnicianProfileLoginInputSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
