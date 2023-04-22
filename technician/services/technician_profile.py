@@ -54,11 +54,11 @@ class TechnicianRegisterProfileService:
                 user = authenticate(username=get_user.username, password=password)
 
                 if not user:
-                    raise ValidationError('Email and Password is Incorrect')
+                    raise ValidationError('Username and Password is Incorrect')
 
                 return user
 
-            raise ValidationError("Invalid Credentials")
+            raise ValidationError("Username and Password is Incorrect")
 
         except Exception as e:
             raise e

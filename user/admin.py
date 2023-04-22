@@ -6,6 +6,6 @@ from user.models import UserProfile
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
-        "user_id",)
+        "user_id","categories","visiting_charges","is_user","is_techinician",)
     list_per_page = 10
     search_fields = ('user_id',)

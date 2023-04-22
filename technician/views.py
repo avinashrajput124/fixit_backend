@@ -41,7 +41,7 @@ class TechnicianExistsRestApi(GenericAPIView):
             return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return error_http_response(message=str(e))
-class UserRegisterRestApi(GenericAPIView):
+class TechnicianRegisterRestApi(GenericAPIView):
     permission_classes = [AllowAny, ]
 
     def post(self, request):

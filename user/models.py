@@ -10,16 +10,16 @@ from django.contrib.auth.models import AbstractUser
 import uuid
 
 TYPE_CHOICES = (
-    ('Electrician', 'electrician'),
-    ('Plumber', 'plumber'),
-    ('Ac_Repair', 'ac_repair'),
-    ('Carpainter', 'carpainter')
+    ('Electrician', 'Electrician'),
+    ('Plumber', 'Plumber'),
+    ('Ac_Repair', 'Ac_Repair'),
+    ('Carpainter', 'Carpainter')
 )
 class UserProfile(AbstractUser):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     phone_no = models.CharField(max_length=15,unique=True, null=True, blank=True)
     email=models.CharField(max_length=255,unique=True, null=True, blank=True)
-    fullname=models.CharField(max_length=255,unique=True, null=True, blank=True)
+    fullname=models.CharField(max_length=255,null=True, blank=True)
     visiting_charges = models.CharField(max_length=255, null=True, blank=True)
     categories = models.CharField(choices=TYPE_CHOICES,max_length=255, null=True, blank=True)
     is_user = models.BooleanField(default=False)

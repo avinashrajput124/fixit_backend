@@ -1,8 +1,8 @@
 from django.urls import path
 
-from user.views import UserRegisterRestApi,UserExistsRestApi
+from technician.views import TechnicianExistsRestApi,TechnicianRegisterRestApi
 urlpatterns = [
 
-    path('technician-register/',UserRegisterRestApi.as_view()),
-    path('technician-login/',UserExistsRestApi.as_view())
+    path('technician-register/',TechnicianRegisterRestApi.as_view()),
+    path('technician-login/',TechnicianExistsRestApi.as_view())
 ]

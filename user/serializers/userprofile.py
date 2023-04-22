@@ -24,7 +24,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = (
-            "user_id", "email","phone_no", "username","date_joined","user_token")
+            "user_id", "username","phone_no","fullname","user_token")
         
     @staticmethod
     def get_token(user):
