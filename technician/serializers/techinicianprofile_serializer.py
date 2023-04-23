@@ -11,8 +11,7 @@ class TechnicianProfileInputSerializer(serializers.Serializer):
     visiting_charges= serializers.CharField(required=True)
     password=serializers.CharField(required=True)
     is_techinician = serializers.BooleanField(default=True)
-    # is_techinician = serializers.BooleanField(default=True)
-    # is_techinician = serializers.BooleanField(default=True)
+
 
 class TechnicianProfileLoginInputSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
@@ -23,7 +22,7 @@ class TechnicianProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = (
-            "user_id","username","fullname","phone_no","categories","visiting_charges",)
+            "user_id","username","fullname","phone_no","categories","visiting_charges","is_user","is_techinician")
 
 
 class TechnicianSerializer(serializers.ModelSerializer):
