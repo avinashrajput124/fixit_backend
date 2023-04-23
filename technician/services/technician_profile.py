@@ -51,7 +51,7 @@ class TechnicianRegisterProfileService:
             get_user = UserProfile.objects.filter(username=username,is_techinician=True).last()
             if get_user:
 
-                user = authenticate(username=get_user.username, password=password)
+                user = authenticate(username=get_user.username, password=password,is_techinician=True)
 
                 if not user:
                     raise ValidationError('Username and Password is Incorrect')
