@@ -14,6 +14,28 @@ from user.serializers.userprofile import UserProfileInputSerializer,UserProfileS
 from user.services.userprofile_service import UserRegisterProfileService
 from user.utils import success_http_response, error_http_response
 
+class UserAlreadyExistsRestApi(GenericAPIView):
+    permission_classes = [AllowAny, ]
+
+    def get(self, request):
+        try:
+            filter_fields = {
+                'username': request.query_params.get('username', None),
+
+            }
+            user = UserRegisterProfileService.check_username(**filter_fields)
+            print(user)
+            return success_http_response(
+                message=user
+
+            )
+
+        except ValidationError as e:
+            return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist as e:
+            return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return error_http_response(message=str(e))
 
 
 

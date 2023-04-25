@@ -62,6 +62,19 @@ class TechnicianRegisterProfileService:
 
         except Exception as e:
             raise e
+        
+    @staticmethod
+    def check_username(
+            username
+    ):
+        try:
+            user_profile = UserProfile.objects.filter(username=username).last()
+            if user_profile:
+                return {'status': True,'technician':'exist'}
+            else:
+                return {'status': False,'technician':'notexist'}
+        except Exception as ex:
+            raise ex
 
 
 
