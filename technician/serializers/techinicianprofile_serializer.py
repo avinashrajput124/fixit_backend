@@ -2,6 +2,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 
 from user.models import UserProfile
+from technician.models import Categories,SubCategories
+
 
 class TechnicianProfileInputSerializer(serializers.Serializer):
     username = serializers.CharField(required=False)
@@ -42,4 +44,15 @@ class TechnicianProfileSerializer(serializers.ModelSerializer):
         else:
             return ' '
         
+
+
+class CategoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Categories
+        fields = ('id', 'image', 'categories')
+
+class SubCategoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubCategories
+        fields = ('id', "category",'image','sub_categories')
 
