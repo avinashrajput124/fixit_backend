@@ -18,13 +18,27 @@ class UserProfileInputSerializer(serializers.Serializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     user_token = serializers.SerializerMethodField('get_token')
+    role = serializers.SerializerMethodField('user_role')
 
     class Meta:
         model = UserProfile
         fields = (
-            "user_id", "username","phone_no","fullname","is_user","is_techinician","user_token",)
+            "user_id", "username","phone_no","fullname","is_user","is_techinician","user_token","role")
         
     @staticmethod
     def get_token(user_id):
         token, _ = Token.objects.get_or_create(user_id=user_id)
         return str(token)
+    
+    @staticmethod
+    def user_role(obj):
+        role=UserProfile.objects.get(id=obj.id)
+        if role:
+            if role.is_user==True:
+                return 'customer'
+            else:
+                return 'techinician'
+        else:
+            return ' '
+
+
