@@ -8,8 +8,6 @@ class UserProfileLoginInputSerializer(serializers.Serializer):
     password=serializers.CharField(required=True)
 
 
-
-
 class UserProfileInputSerializer(serializers.Serializer):
     username = serializers.CharField(required=False)
     fullname = serializers.CharField(required=False)
@@ -24,9 +22,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = (
-            "user_id", "username","phone_no","fullname","user_token","is_user","is_techinician")
+            "user_id", "username","phone_no","fullname","is_user","is_techinician","user_token",)
         
     @staticmethod
-    def get_token(user):
-        token, _ = Token.objects.get_or_create(user=user)
+    def get_token(user_id):
+        token, _ = Token.objects.get_or_create(user_id=user_id)
         return str(token)

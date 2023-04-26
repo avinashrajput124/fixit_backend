@@ -19,20 +19,14 @@ class TechnicianProfileLoginInputSerializer(serializers.Serializer):
 
 
 class TechnicianProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = (
-            "user_id","username","fullname","phone_no","categories","visiting_charges","is_user","is_techinician")
-
-
-class TechnicianSerializer(serializers.ModelSerializer):
     user_token = serializers.SerializerMethodField('get_token')
     class Meta:
         model = UserProfile
         fields = (
-            "user_id","username","fullname","phone_no","categories","visiting_charges","phone_no","user_token")
-        
+            "user_id","username","fullname","phone_no","categories","visiting_charges","is_user","is_techinician","user_token")
     @staticmethod
-    def get_token(user):
-        token, _ = Token.objects.get_or_create(user=user)
+    def get_token(user_id):
+        token, _ = Token.objects.get_or_create(user_id=user_id)
         return str(token)
+        
+

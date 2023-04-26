@@ -7,3 +7,4 @@ urlpatterns = [
     path('technician-exist-check/',TechnicianAlreadyExistsRestApi.as_view()),
     path('technician-login/',TechnicianExistsRestApi.as_view())
 ]
+

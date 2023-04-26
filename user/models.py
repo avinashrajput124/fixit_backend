@@ -21,7 +21,7 @@ TYPE_CHOICES = (
 class UserProfile(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user_id = models.CharField(max_length = 10,blank=True,editable=False,unique=True, default=create_new_ref_number)
-    phone_no = models.CharField(max_length=15,unique=True, null=True, blank=True)
+    phone_no = models.CharField(max_length=15,null=True, blank=True)
     email=models.CharField(max_length=255,unique=True, null=True, blank=True)
     fullname=models.CharField(max_length=255,null=True, blank=True)
     visiting_charges = models.CharField(max_length=255, null=True, blank=True)
