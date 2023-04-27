@@ -11,9 +11,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from user.serializers.userprofile import UserProfileInputSerializer,UserProfileSerializer,UserProfileLoginInputSerializer
-from user.services.userprofile_service import UserRegisterProfileService
+from user.services.userprofile_service import UserRegisterProfileService,UserCategoriesService
 from user.utils import success_http_response, error_http_response
-
+from technician.serializers.techinicianprofile_serializer import CategoriesSerializer,SubCategoriesSerializer
 class UserAlreadyExistsRestApi(GenericAPIView):
     permission_classes = [AllowAny, ]
 
@@ -81,4 +81,56 @@ class UserRegisterRestApi(GenericAPIView):
             return error_http_response(message=str(e))
 
 
+class CategeriousRestApi(GenericAPIView):
+
+    def get(self, request):
+        try:
+            categerious = UserCategoriesService.get_categories()
+            return Response(
+                data=CategoriesSerializer(categerious, many=True).data,
+                status=status.HTTP_200_OK
+            )
+
+        except ValidationError as e:
+            return error_http_response(message=str(e.message))
+        except Exception as e:
+            return error_http_response(message=str(e))
+class UserSearchCategeriousRestApi(GenericAPIView):
+
+    def get(self, request):
+        try:
+            filter_fields = {
+                'category': request.query_params.get('category', None),
+            }
+
+            sub_categerious = UserCategoriesService.get_user_search_categories(**filter_fields)
+            serializer = CategoriesSerializer(sub_categerious, many=True)
+            return Response(
+                data=serializer.data,
+                status=status.HTTP_200_OK
+            )
+        except ValidationError as e:
+            return error_http_response(message=str(e.message))
+        except Exception as e:
+            return error_http_response(message=str(e))
+        
+class SubCategeriousRestApi(GenericAPIView):
+
+    def get(self, request):
+        try:
+            filter_fields = {
+                'category_id': request.query_params.get('category_id', None),
+            }
+
+            sub_categerious = UserCategoriesService.get_sub_categories(**filter_fields)
+            serializer = SubCategoriesSerializer(sub_categerious, many=True)
+            return Response(
+                data=serializer.data,
+                status=status.HTTP_200_OK
+            )
+
+        except ValidationError as e:
+            return error_http_response(message=str(e.message))
+        except Exception as e:
+            return error_http_response(message=str(e))
 

@@ -21,8 +21,7 @@ class TechnicianRegisterProfileService:
             visiting_charges=None,
             categories=None,
             is_techinician=True,
-           
-            
+                   
     ):
         
         try:
@@ -79,34 +78,7 @@ class TechnicianRegisterProfileService:
             raise ex
         
 
-class UserCategoriesService:
-    @staticmethod
-    @transaction.atomic
-    def get_categories():
-        try:
-            return Categories.objects.all()
 
-        except Exception as e:
-            raise e
-        
-    @staticmethod
-    def get_user_search_categories(category):
-        try:
-            search_categerious = Categories.objects.filter(categories=category)
-            return search_categerious
-
-        except Exception as e:
-            raise e
-        
-
-    @staticmethod
-    def get_sub_categories(category_id):
-        try:
-            sub_categerious = SubCategories.objects.filter(category_id=category_id)
-            return sub_categerious
-
-        except Exception as e:
-            raise e
 
 
 

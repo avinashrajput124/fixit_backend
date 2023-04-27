@@ -44,8 +44,6 @@ class TechnicianProfileSerializer(serializers.ModelSerializer):
         else:
             return ' '
         
-
-
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categories
