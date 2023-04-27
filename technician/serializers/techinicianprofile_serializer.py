@@ -54,3 +54,21 @@ class SubCategoriesSerializer(serializers.ModelSerializer):
         model = SubCategories
         fields = ('id', "category",'image','sub_categories')
 
+
+class TechnicianCategoriesSerializer(serializers.ModelSerializer):
+    sub_categeroies = serializers.SerializerMethodField('sub_category')
+    class Meta:
+        model = Categories
+        fields = ('id', 'image', 'categories',"sub_categeroies")
+
+    @staticmethod
+    def sub_category(obj):
+        sub_catehory=SubCategories.objects.filter(category_id=obj.id)
+        print('avi')
+        print(sub_catehory,'sub_categeroies')
+        if sub_catehory:
+            return SubCategoriesSerializer(sub_catehory,many=True).data
+        else:
+            return []
+        
+

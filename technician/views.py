@@ -14,8 +14,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from technician.serializers.techinicianprofile_serializer import TechnicianProfileInputSerializer,TechnicianProfileLoginInputSerializer,\
-    TechnicianProfileSerializer,CategoriesSerializer,SubCategoriesSerializer
-from technician.services.technician_profile import TechnicianRegisterProfileService
+    TechnicianProfileSerializer,CategoriesSerializer,SubCategoriesSerializer,TechnicianCategoriesSerializer
+from technician.services.technician_profile import TechnicianRegisterProfileService,TechnicianCategoriesService
 from user.utils import success_http_response, error_http_response
 
 
@@ -87,3 +87,20 @@ class TechnicianRegisterRestApi(GenericAPIView):
             return error_http_response(message=str(e))
 
 
+class TechnicianCategeriosRestApi(GenericAPIView):
+    permission_classes = [IsAuthenticated, ]
+    def get(self, request):
+        try:
+            user_id=request.user.id
+
+            categerious = TechnicianCategoriesService.get_technician_categories(user_id)
+            return Response(
+                data=TechnicianCategoriesSerializer(categerious, many=True).data,
+                status=status.HTTP_200_OK
+            )
+        except ValidationError as e:
+            return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist as e:
+            return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return error_http_response(message=str(e))

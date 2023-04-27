@@ -101,7 +101,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+REST_FRAMEWORK = {
+    "DATE_INPUT_FORMATS": ["%d-%m-%Y","%m-%d-%Y",'%y-%m-%d'],
+    'DEFAULT_PAGINATION_CLASS': 'user.utils.StandardResultsSetPagination',
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

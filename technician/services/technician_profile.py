@@ -81,6 +81,23 @@ class TechnicianRegisterProfileService:
 
 
 
+class TechnicianCategoriesService:
+    @staticmethod
+    @transaction.atomic
+    def get_technician_categories(
+        user_id
+    ):
+        try:
+            print(user_id)
+            user_categerory=UserProfile.objects.get(id=user_id)
+            print(user_categerory.categories)
+            if user_categerory:
+                sub_category=Categories.objects.filter(categories=user_categerory.categories)
+                print(sub_category)
+                return sub_category
+        except Exception as e:
+            raise e
+
 
 
 
