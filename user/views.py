@@ -10,7 +10,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from user.serializers.userprofile import UserProfileInputSerializer,UserProfileSerializer,UserProfileLoginInputSerializer
+from user.serializers.userprofile import UserProfileInputSerializer,UserProfileSerializer,UserProfileLoginInputSerializer,UserAddressInputSerializer,UserProfilepicInputSerializer
 from user.services.userprofile_service import UserRegisterProfileService,UserCategoriesService
 from user.utils import success_http_response, error_http_response
 from technician.serializers.techinicianprofile_serializer import CategoriesSerializer,SubCategoriesSerializer
@@ -81,6 +81,65 @@ class UserRegisterRestApi(GenericAPIView):
             return error_http_response(message=str(e))
 
 
+class UserProfileDataRestApi(GenericAPIView):
+    def get(self, request):
+        try:
+            user_id = request.user.id
+            user = UserRegisterProfileService.get_userprofile(user_id)
+            print(user)
+            return success_http_response(
+                message=UserProfileSerializer(user).data,
+
+            )
+
+        except ValidationError as e:
+            return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist as e:
+            return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return error_http_response(message=str(e))
+        
+class UpdateUserAddressDataRestApi(GenericAPIView):
+    permission_classes = [IsAuthenticated, ]
+    def patch(self, request):
+        try:
+            user_id = request.user.id
+            serializer = UserAddressInputSerializer(data=request.data)
+
+            if serializer.is_valid(raise_exception=True):
+                validated_data = serializer.validated_data
+                useraddress = UserRegisterProfileService.update_user_profile(user_id, **validated_data)
+                return success_http_response(
+                    message=UserProfileSerializer(useraddress, partial=True).data,
+
+                )
+        except ValidationError as e:
+            return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist as e:
+            return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return error_http_response(message=str(e))
+        
+class UpdateUserProfilepicDataRestApi(GenericAPIView):
+    permission_classes = [IsAuthenticated, ]
+    def patch(self, request):
+        try:
+            user_id = request.user.id
+            serializer = UserProfilepicInputSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                validated_data = serializer.validated_data
+                useraddress = UserRegisterProfileService.update_user_profile_pic(user_id, **validated_data)
+                return success_http_response(
+                    message=UserProfilepicInputSerializer(useraddress, partial=True).data,
+
+                )
+        except ValidationError as e:
+            return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist as e:
+            return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return error_http_response(message=str(e))
+
 class CategeriousRestApi(GenericAPIView):
 
     def get(self, request):
@@ -102,6 +161,7 @@ class UserSearchCategeriousRestApi(GenericAPIView):
             filter_fields = {
                 'category': request.query_params.get('category', None),
             }
+
 
             sub_categerious = UserCategoriesService.get_user_search_categories(**filter_fields)
             serializer = CategoriesSerializer(sub_categerious, many=True)

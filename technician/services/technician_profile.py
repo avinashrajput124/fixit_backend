@@ -40,7 +40,7 @@ class TechnicianRegisterProfileService:
 
         except Exception as e:
             raise e
-        
+
     @staticmethod
     def login_technician_profile(
 

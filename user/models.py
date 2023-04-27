@@ -9,13 +9,17 @@ from django.contrib.auth.models import AbstractUser
 from user.utils import create_new_ref_number
 import uuid
 
+def get_profile_image_path(instance, filename):
+    return 'profile/{0}'.format(filename)
 
 
 class UserProfile(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user_id = models.CharField(max_length = 10,blank=True,editable=False,unique=True, default=create_new_ref_number)
+    profile_image = models.FileField(upload_to=get_profile_image_path, null=True, blank=True)
     phone_no = models.CharField(max_length=15,null=True, blank=True)
     email=models.CharField(max_length=255,unique=True, null=True, blank=True)
+    address=models.CharField(max_length=500, null=True, blank=True)
     fullname=models.CharField(max_length=255,null=True, blank=True)
     visiting_charges = models.CharField(max_length=255, null=True, blank=True)
     categories = models.CharField(max_length=255, null=True, blank=True)

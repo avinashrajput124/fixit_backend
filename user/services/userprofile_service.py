@@ -70,7 +70,56 @@ class UserRegisterProfileService:
                 return {'status': False,'user':'notexist'}
         except Exception as ex:
             raise ex
+        
 
+    @staticmethod
+    def get_userprofile(
+            user_id,
+    ):
+               
+        try:
+            user = UserProfile.objects.get(id=user_id)
+            if user:
+                return user
+            raise ValidationError("user does not exists") 
+        except Exception as e:
+            raise e
+    
+    @staticmethod
+    def update_user_profile(
+            user_id,
+            fullname=None,
+            address=None,
+    ):  
+        try:
+            user = UserProfile.objects.get(id=user_id)
+            if user:
+                if fullname==None:
+                    user.fullname = user.fullname
+                else:
+                    user.fullname=fullname
+                if address == None:
+                    user.address = user.address
+                else:
+                    user.address=address
+                user.save()
+                return user
+            raise ValidationError("user does not exists") 
+        except Exception as e:
+            raise e
+    @staticmethod
+    def update_user_profile_pic(
+            user_id,
+            profile_image,
+    ):  
+        try:
+            user = UserProfile.objects.get(id=user_id)
+            user.profile_image=profile_image
+            user.save()
+            return user
+        except Exception as e:
+            raise e
+        
 
 
 class UserCategoriesService:
@@ -86,7 +135,7 @@ class UserCategoriesService:
     @staticmethod
     def get_user_search_categories(category):
         try:
-            search_categerious = Categories.objects.filter(categories=category)
+            search_categerious = Categories.objects.filter(categories__icontains=category)
             return search_categerious
 
         except Exception as e:

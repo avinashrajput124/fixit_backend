@@ -23,7 +23,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = (
-            "user_id", "username","phone_no","fullname","is_user","is_techinician","user_token","role")
+            "user_id", "username","phone_no","profile_image","fullname","address","is_user","is_techinician","user_token","role")
         
     @staticmethod
     def get_token(user_id):
@@ -42,3 +42,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
             return ' '
 
 
+class UserAddressInputSerializer(serializers.Serializer):
+    fullname=serializers.CharField(required=False)
+    address=serializers.CharField(required=False)
+
+class UserProfilepicInputSerializer(serializers.Serializer):
+    profile_image = serializers.FileField(required=False)
