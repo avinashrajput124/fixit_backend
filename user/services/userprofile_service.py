@@ -43,11 +43,9 @@ class UserRegisterProfileService:
 
     ):
         try:
-            get_user = UserProfile.objects.filter(username=username,is_user=True).last()
+            get_user = UserProfile.objects.filter(username=username).last()
             if get_user:
-
-                user = authenticate(username=get_user.username, password=password,is_user=True)
-
+                user = authenticate(username=get_user.username, password=password)
                 if not user:
                     raise ValidationError('Username and Password is Incorrect')
 

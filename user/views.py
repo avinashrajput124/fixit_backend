@@ -21,7 +21,6 @@ class UserAlreadyExistsRestApi(GenericAPIView):
         try:
             filter_fields = {
                 'username': request.query_params.get('username', None),
-
             }
             user = UserRegisterProfileService.check_username(**filter_fields)
             print(user)
@@ -41,8 +40,7 @@ class UserAlreadyExistsRestApi(GenericAPIView):
 
 class UserExistsRestApi(GenericAPIView):
     permission_classes = [AllowAny, ]
-
-    def get(self, request):
+    def post(self, request):
         try:
 
             serializer = UserProfileLoginInputSerializer(data=request.data)
@@ -60,12 +58,11 @@ class UserExistsRestApi(GenericAPIView):
             return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return error_http_response(message=str(e))
+        
 class UserRegisterRestApi(GenericAPIView):
     permission_classes = [AllowAny, ]
-
     def post(self, request):
         try:
-
             serializer = UserProfileInputSerializer(data=request.data)
 
             if serializer.is_valid(raise_exception=True):

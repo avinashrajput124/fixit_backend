@@ -45,7 +45,7 @@ class TechnicianAlreadyExistsRestApi(GenericAPIView):
 class TechnicianExistsRestApi(GenericAPIView):
     permission_classes = [AllowAny, ]
 
-    def get(self, request):
+    def post(self, request):
         try:
 
             serializer = TechnicianProfileLoginInputSerializer(data=request.data)
