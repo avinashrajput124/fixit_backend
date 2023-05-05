@@ -161,8 +161,6 @@ class UserSearchCategeriousRestApi(GenericAPIView):
             filter_fields = {
                 'category': request.query_params.get('category', None),
             }
-
-
             sub_categerious = UserCategoriesService.get_user_search_categories(**filter_fields)
             serializer = CategoriesSerializer(sub_categerious, many=True)
             return Response(
