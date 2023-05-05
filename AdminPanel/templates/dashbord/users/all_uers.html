@@ -1,0 +1,337 @@
+{% extends 'base/dashboard_base.html' %}
+{% block title %}Users{% endblock title %}
+{% block body %}
+
+
+
+<style>
+    .mb-4, .my-4 {
+    margin-bottom: 0.3rem !important;
+}
+.rowx{
+    margin-bottom: 0px !important;
+}
+.col-sm-4, .col-sm-3{
+    margin-bottom: 8px !important;
+}
+</style>
+
+
+<!-- PAGE-HEADER -->
+<div class="page-header">
+    <h1 class="page-title">All Users</h1>
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Admin Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">All Users</li>
+        </ol>
+    </div>
+</div>
+<!-- PAGE-HEADER END -->
+{% comment %} <div class="col-12 text-end" style="margin-top: -24px; margin-bottom: 27px;">
+        <a href="download-user-record"><button class="btn btn-success mt-3" 
+            style="padding: 9px 50px; background-color: rgb(26, 9, 209) !important;">Download Users Detail</button></a>
+</div> {% endcomment %}
+<!-- ROW-1 OPEN -->
+<!-- Row -->
+<div class="row ">
+    <div class="col-md-12">
+        <div id="jar" style="display:none;">
+        <div class="row"> 
+            {% for data in data %}
+            <div class="col-md-12  col-xl-6 content">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-4" style="display: flex; justify-content: end;"  data-bs-toggle="modal" data-bs-target="#userview{{data.id}}" style="cursor: pointer;">
+                            <img src="/media/{{data.profile_image}}" class="card-img-left h-40" alt="img" 
+                            style="min-width: 75%; object-fit: cover; padding: 17px; height: 161px; border-radius: 35px !important; padding-right: 17px;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card" style="margin-bottom: 0px;    margin-top: 28px;">
+                                <div class="card-body" style="margin-bottom: -32px; padding-top: 3px;">
+                                    
+                                 
+
+                                    
+                                    <form class="form-horizontal"  data-bs-toggle="modal" data-bs-target="#userview{{data.id}}" style="cursor: pointer;">
+                                        <dl class="row rowx">
+                                            <dt class="col-sm-4">Name</dt>
+                                            <dd class="col-sm-8">{{data.fullname}}</dd>
+                                        </dl>
+                                        <dl class="row rowx">
+                                            <dt class="col-sm-4">E-mail ID</dt>
+                                            <dd class="col-sm-8">{{data.email}}</dd>
+                                        </dl>
+                                        <dl class="row rowx">
+                                            <dt class="col-sm-4">Phone No.</dt>
+                                            <dd class="col-sm-8">{{data.phone_no}}</dd>
+                                        </dl>
+                                        <!-- <div class="mb-0 row justify-content-end" style="margin-top: -30px;">
+                                            <div class="col-md-4">
+                                                <a href="" style="display: flex; justify-content: flex-end;    color: red;
+                                                font-size: 30px; "><i class="fa-brands fa-man-messenger"
+                                                        aria-hidden="true"></i><svg
+                                                        style="width: 40px; margin-bottom: 21px; margin-top: 9px;"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path
+                                                            d="M256.55 8C116.52 8 8 110.34 8 248.57c0 72.3 29.71 134.78 78.07 177.94 8.35 7.51 6.63 11.86 8.05 58.23A19.92 19.92 0 0 0 122 502.31c52.91-23.3 53.59-25.14 62.56-22.7C337.85 521.8 504 423.7 504 248.57 504 110.34 396.59 8 256.55 8zm149.24 185.13l-73 115.57a37.37 37.37 0 0 1-53.91 9.93l-58.08-43.47a15 15 0 0 0-18 0l-78.37 59.44c-10.46 7.93-24.16-4.6-17.11-15.67l73-115.57a37.36 37.36 0 0 1 53.91-9.93l58.06 43.46a15 15 0 0 0 18 0l78.41-59.38c10.44-7.98 24.14 4.54 17.09 15.62z" />
+                                                    </svg></a>
+                                            </div>
+                                        </div> -->
+                                    </form>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            style="margin-left: 15px; width: 96%; padding: 2px; background-color: blue; color: white; margin-bottom: -1px; border-bottom-left-radius: 17px; border-bottom-right-radius: 17px;">
+                            <h6 style="margin-top: 6px; margin-left: 17px;"><b>Joining Date & Time :-</b>{{data.date_joined}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="userview{{data.id}}">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content modal-content-demo">
+                            <div class="modal-header">
+                                <h6 class="modal-title">User Complete Detail</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="row g-0" style=" margin-bottom: 4px;">
+                                        
+                                        <div class="col-md-4" style="justify-content: flex-end; display: flex; align-content: center; flex-wrap: wrap;">
+                                            <img src="/media/{{data.profile_image}}"  class="card-img-left h-40" alt="img" style="min-width: 71%; object-fit: cover; height: 170px; border-radius: 16px !important; padding-right: 0px;">
+                                        </div>
+                                    
+                                        <div class="col-md-8">
+                                            <div class="card" style="height: 151px; ">
+                                                <div class="card-body" style="margin-bottom: -45px;">
+                                                    <form class="form-horizontal">
+                                                        <dl class="row rowx">
+                                                            <dt class="col-sm-3">Name</dt>
+                                                            <dd class="col-sm-9">{{data.fullname}}</dd>
+                                                        </dl>
+                                                        <dl class="row rowx">
+                                                            <dt class="col-sm-3">E-mail ID</dt>
+                                                            <dd class="col-sm-9">{{data.email}}</dd>
+                                                        </dl>
+                                                        <dl class="row rowx">
+                                                            <dt class="col-sm-3">Dist. Name</dt>
+                                                            <dd class="col-sm-9">{{data.last_name}}</dd>
+                                                        </dl>
+                                                        <dl class="row rowx">
+                                                            <dt class="col-sm-4">Phone Number</dt>
+                                                            <dd class="col-sm-8" style="margin-left: -41px;">{{data.phone_no}}</dd>
+                                                        </dl>
+                                                        
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card" style="margin-bottom: 2px;">
+                                            <div class="card-body" style="padding-bottom: 3px">
+                                                <h3 style="text-align: center; background-color: #0000dad4; color: white; padding: 3px; border-radius: 46px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;"><strong>Personal Information (Raw data for Now)</strong></h3>
+                                                <form class="form-horizontal">
+                                                    {% if info.photo%}
+                                                    <div class="col-md-8" style="display: flex; align-content: center; flex-wrap: wrap; margin-left: 15%; padding-bottom: 19px;">
+                                                        <img src="/media/{{info.photo}}"  class="card-img-left h-40" alt="img" style="min-width: 100%; object-fit: cover; padding: 10px; height: 227px; border-radius: 15px;">
+                                                    </div>
+                                                    {% endif %}
+                                                    <dl class="row">
+                                                        <dl class="col-md-6" style="margin-bottom: -8px;" >
+                                                            <dl class="row">
+                                                                <dt class="col-sm-4">Email ID</dt>
+                                                                <dd class="col-sm-8">{{info.email}}</dd>
+                                                            </dl>
+                                                        </dl>
+                                                        <dl class="col-md-6" style="margin-bottom: -8px;">
+                                                            <dl class="row">
+                                                                <dt class="col-sm-4">Qualification</dt>
+                                                                <dd class="col-sm-8">{{info.qualification}}</dd>
+                                                            </dl>
+                                                        </dl>
+                                                    </dl>
+                                                    
+                                                    
+                                                    <dl class="row">
+                                                        <dl class="col-md-6" style="margin-bottom: -8px;">
+                                                            <dl class="row">
+                                                                <dt class="col-sm-5">Address Field</dt>
+                                                                <dd class="col-sm-7">{{info.experiance_field}}</dd>
+                                                            </dl>
+                                                        </dl>
+                                                        <dl class="col-md-6">
+                                                            <dl class="row" style="    margin-bottom: -5px;">
+                                                                <dt class="col-sm-3">Location</dt>
+                                                                <dd class="col-sm-9">{{info.location}}</dd>
+                                                            </dl>
+                                                        </dl>
+                                                    </dl>
+
+                                                    
+                                                </form>
+                                                <div class="mb-0 row justify-content-end"
+                                            style="margin-top: -46px; text-align: end;">
+                                            <div class="col-md-5">
+                                                <a href="https://api.whatsapp.com/send?phone={{user.phone_number|slice:'3:'}}"
+                                                    target="_blank"
+                                                    style="font-size: 40px; margin-top: -14px; margin-right: 7px;"><i
+                                                        class=""></i><svg style="width: 37px;"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                                        <path
+                                                            d="M256.55 8C116.52 8 8 110.34 8 248.57c0 72.3 29.71 134.78 78.07 177.94 8.35 7.51 6.63 11.86 8.05 58.23A19.92 19.92 0 0 0 122 502.31c52.91-23.3 53.59-25.14 62.56-22.7C337.85 521.8 504 423.7 504 248.57 504 110.34 396.59 8 256.55 8zm149.24 185.13l-73 115.57a37.37 37.37 0 0 1-53.91 9.93l-58.08-43.47a15 15 0 0 0-18 0l-78.37 59.44c-10.46 7.93-24.16-4.6-17.11-15.67l73-115.57a37.36 37.36 0 0 1 53.91-9.93l58.06 43.46a15 15 0 0 0 18 0l78.41-59.38c10.44-7.98 24.14 4.54 17.09 15.62z" />
+                                                    </svg></a>
+                                                <a id="shareButton" onclick="share(this)"
+                                                    style="font-size: 30px; margin-top: -14px; color: black;"><i
+                                                        class="icon icon-share"
+                                                        style="font-weight: bold; cursor: pointer;"></i></a>
+                                            </div>
+                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div style="    margin-left: 15px;
+                                    width: 96%;
+                                    padding: 2px;
+                                    background-color: blue;
+                                    color: white;
+                                    margin-bottom: -1px; border-bottom-left-radius: 17px; border-bottom-right-radius: 17px;">
+                                        <h6 style="    margin-top: 6px; margin-left: 17px;"><b>Joining Date & Time :-</b>{{data.date_joined}}</h6>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            {% endfor %}
+            <div class="pagination"></div>
+        </div>
+        
+          
+    
+    </div>
+    </div>
+</div>
+<!-- /Row -->
+
+
+
+    <!-- Pagination bymy own...change after some time testing-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+
+   <script>
+   
+function getPageList(totalPages, page, maxLength) {
+    if (maxLength < 5) throw "maxLength must be at least 5";
+
+    function range(start, end) {
+        return Array.from(Array(end - start + 1), (_, i) => i + start); 
+    }
+
+    var sideWidth = maxLength < 9 ? 1 : 2;
+    var leftWidth = (maxLength - sideWidth*2 - 3) >> 1;
+    var rightWidth = (maxLength - sideWidth*2 - 2) >> 1;
+    if (totalPages <= maxLength) {
+        // no breaks in list
+        return range(1, totalPages);
+    }
+    if (page <= maxLength - sideWidth - 1 - rightWidth) {
+        // no break on left of page
+        return range(1, maxLength - sideWidth - 1)
+            .concat(0, range(totalPages - sideWidth + 1, totalPages));
+    }
+    if (page >= totalPages - sideWidth - 1 - rightWidth) {
+        // no break on right of page
+        return range(1, sideWidth)
+            .concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+    }
+    // Breaks on both sides
+    return range(1, sideWidth)
+        .concat(0, range(page - leftWidth, page + rightWidth),
+                0, range(totalPages - sideWidth + 1, totalPages));
+}
+
+// Below is an example use of the above function.
+$(function () {
+    // Number of items and limits the number of items per page
+    var numberOfItems = $("#jar .content").length;
+    var limitPerPage = 6;
+    // Total pages rounded upwards
+    var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    // Number of buttons at the top, not counting prev/next,
+    // but including the dotted buttons.
+    // Must be at least 5:
+    var paginationSize = 6; 
+    var currentPage;
+
+    function showPage(whichPage) {
+        if (whichPage < 1 || whichPage > totalPages) return false;
+        currentPage = whichPage;
+        $("#jar .content").hide()
+            .slice((currentPage-1) * limitPerPage, 
+                    currentPage * limitPerPage).show();
+        // Replace the navigation items (not prev/next):            
+        $(".pagination li").slice(1, -1).remove();
+        getPageList(totalPages, currentPage, paginationSize).forEach( item => {
+            $("<li>").addClass("page-item")
+                     .addClass(item ? "current-page" : "disabled")
+                     .toggleClass("active", item === currentPage).append(
+                $("<a>").addClass("page-link").attr({
+                    href: "javascript:void(0)"}).text(item || "<<>>")
+            ).insertBefore("#next-page");
+        });
+        // Disable prev/next when at first/last page:
+        $("#previous-page").toggleClass("disabled", currentPage === 1);
+        $("#next-page").toggleClass("disabled", currentPage === totalPages);
+        return true;
+    }
+
+    // Include the prev/next buttons:
+    $(".pagination").append(
+        $("<li>").addClass("page-item").attr({ id: "previous-page" }).append(
+            $("<a>").addClass("page-link").attr({
+                href: "javascript:void(0)"}).text("Prev")
+        ),
+        $("<li>").addClass("page-item").attr({ id: "next-page" }).append(
+            $("<a>").addClass("page-link").attr({
+                href: "javascript:void(0)"}).text("Next")
+        )
+    );
+    // Show the page links
+    $("#jar").show();
+    showPage(1);
+
+    // Use event delegation, as these items are recreated later    
+    $(document).on("click", ".pagination li.current-page:not(.active)", function () {
+        return showPage(+$(this).text());
+    });
+    $("#next-page").on("click", function () {
+        return showPage(currentPage+1);
+    });
+
+    $("#previous-page").on("click", function () {
+        return showPage(currentPage-1);
+    });
+});
+   </script>
+
+
+
+{% endblock body %}

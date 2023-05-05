@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Sash – Bootstrap 5  Admin & Dashboard Template">
+    <meta name="author" content="Spruko Technologies Private Limited">
+    <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/brand/favicon.ico" />
+
+    <!-- TITLE -->
+    <title>{% block title %}{% endblock title %} || FixIT</title>
+
+    <!-- BOOTSTRAP CSS -->
+    <link id="style" href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- STYLE CSS -->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <link href="/static/css/dark-style.css" rel="stylesheet" />
+    <link href="/static/css/transparent-style.css" rel="stylesheet">
+    <link href="/static/css/skin-modes.css" rel="stylesheet" />
+
+    <!--- FONT-ICONS CSS -->
+    <link href="/static/css/icons.css" rel="stylesheet" />
+
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="/static/colors/color1.css" />
+
+        
+    <style>
+        .app.sidebar-mini.sidenav-toggled .side-menu__label {
+            display: flex !important;
+        }
+
+        .customer-ion{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .customer-ion::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 40px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 12\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Seller-ion{
+        position: relative;
+        max-width: 100%;
+    }
+
+    .Seller-ion::after{
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: -52px;
+        width: 48px;
+        height: 36px;
+        background-image: url("/static/images/image-douryou/icon/add\ 29\ \(1\).png");
+        object-fit: contain;
+        background-repeat: no-repeat;
+    }
+        .post-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .post-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 11\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Favorite-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .Favorite-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 13\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Latest-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .Latest-icon::after{
+            content: "";
+            position: absolute;
+            top: -14px;
+            left: -53px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 22\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Latest-iconx{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .Latest-iconx::after{
+            content: "";
+            position: absolute; 
+            top: -10px;
+            left: -63px;
+            width: 48px;
+            height: 37px;
+            background-image: url(/static/images/image-douryou/icon/add\ 29\ \(2\).png);
+            object-fit: contain;
+            background-repeat: no-repeat;
+                }
+
+        .pr-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .pr-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 13\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Event-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .Event-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 23\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+
+        .pr-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .pr-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 15\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .video-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .video-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 14\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Notification-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .Notification-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 42px;
+            background-image: url("/static/images/image-douryou/icon/add\ 24\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .MyMatch-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .MyMatch-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 25\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Premium-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .Premium-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 25\ \(1\).png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Staff-icon{
+            position: relative;
+            max-width: 100%;
+        }
+
+        .Staff-icon::after{
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -52px;
+            width: 48px;
+            height: 36px;
+            background-image: url("/static/images/image-douryou/icon/add\ 26.png");
+            object-fit: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Eventsk-icon{
+        position: relative;
+        max-width: 100%;
+    }
+
+    .Eventsk-icon::after{
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: -52px;
+        width: 48px;
+        height: 36px;
+        background-image: url("/static/images/image-douryou/icon/add\ 29\ \(9\).png");
+        object-fit: contain;
+        background-repeat: no-repeat;
+      }
+
+        .slide-menu a:before{
+            opacity: 0;
+        }
+
+        .slide-menu a{
+            position: relative;
+
+        }
+
+        .slide-menu li{
+            margin: 15px 0 0 0;
+            padding-left: 15px;
+
+        }
+
+        .slide-menu a img{
+            
+            position: absolute;
+            top: -3px;
+            left: -23px;
+            width: 36px;
+            height: 36px;
+            
+            object-fit: contain;
+            background-repeat: no-repeat;
+
+
+        }
+    </style>
+</head>
+
+<body class="app sidebar-mini ltr">
+
+    <!-- GLOBAL-LOADER -->
+    <div id="global-loader">
+        <img src="/static/images/loader.svg" class="loader-img" alt="Loader">
+    </div>
+    <!-- /GLOBAL-LOADER -->
+
+    <!-- PAGE -->
+    <div class="page">
+        <div class="page-main">
+
+            <!-- app-Header -->
+            <div class="app-header header sticky">
+                <div class="container-fluid main-container">
+                    <div class="d-flex">
+                        <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
+                        <!-- sidebar-toggle-->
+                        <a class="logo-horizontal " href="admin-seller-user-request-approval">
+                            <img src="/static/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+                            <img src="/static/images/brand/logo-3.png" class="header-brand-img light-logo1" alt="logo">
+                        </a>
+                 
+                        <div class="d-flex order-lg-2 ms-auto header-right-icons">
+                            <div class="dropdown d-none">
+                                <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
+                                    <i class="fe fe-search"></i>
+                                </a>
+                                <div class="dropdown-menu header-search dropdown-menu-start">
+                                    <div class="input-group w-100 p-2">
+                                        <input type="text" class="form-control" placeholder="Search....">
+                                        <div class="input-group-text btn btn-primary">
+                                            <i class="fe fe-search" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SEARCH -->
+                            <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon fe fe-more-vertical"></span>
+                                </button>
+                            <div class="navbar navbar-collapse responsive-navbar p-0">
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                                    <div class="d-flex order-lg-2">
+                                        <div class="dropdown d-lg-none d-flex">
+                                            <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
+                                                <i class="fe fe-search"></i>
+                                            </a>
+                                            <div class="dropdown-menu header-search dropdown-menu-start">
+                                                <div class="input-group w-100 p-2">
+                                                    <input type="text" class="form-control" placeholder="Search....">
+                                                    <div class="input-group-text btn btn-primary">
+                                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- COUNTRY -->
+                                        
+                                        <!-- togel -->
+                                        <div class="dropdown  d-flex">
+                                            <a class="nav-link icon theme-layout nav-link-bg layout-setting">
+                                                <span class="dark-layout"><i class="fe fe-moon"></i></span>
+                                                <span class="light-layout"><i class="fe fe-sun"></i></span>
+                                            </a>
+                                        </div>
+                                        <!-- full screen -->
+                                        <div class="dropdown d-flex">
+                                            <a class="nav-link icon full-screen-link nav-link-bg">
+                                                <i class="fe fe-minimize fullscreen-button"></i>
+                                            </a>
+                                        </div>
+                                        
+                                        
+                                        <!-- Profile -->
+                                        <div class="dropdown d-flex profile-1">
+                                            <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link leading-none d-flex">
+                                                <img src="/static/images/users/21.jpg" alt="profile-user" class="avatar  profile-user brround cover-image">
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <div class="drop-heading">
+                                                    <div class="text-center"> 
+                                                        <h5 class="text-dark mb-0 fs-14 fw-semibold">Priony</h5>
+                                                        <small class="text-muted">Senior Admin</small>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-divider m-0"></div>
+                                                <!-- <a class="dropdown-item" href="#">
+                                                    <i class="dropdown-icon fe fe-user"></i> Profile
+                                                </a> -->
+                                                <!-- <a class="dropdown-item" href="#">
+                                                    <i class="dropdown-icon fe fe-mail"></i> Inbox
+                                                    <span class="badge bg-danger rounded-pill float-end">5</span>
+                                                </a> -->
+                                                <!-- <a class="dropdown-item" href="#">
+                                                    <i class="dropdown-icon fe fe-lock"></i> Lockscreen
+                                                </a> -->
+                                                <a class="dropdown-item" href="admin-logout">
+                                                    <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /app-Header -->
+
+            <!--APP-SIDEBAR-->
+            <div class="sticky">
+                <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+                <div class="app-sidebar">
+                    <div class="side-header">
+                        <a class="header-brand1" href="admin-seller-user-request-approval">
+                            <img src="/static/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+                            <img src="/static/images/brand/logo-1.png" class="header-brand-img toggle-logo" alt="logo">
+                            <img src="/static/images/brand/logo-2.png" class="header-brand-img light-logo" alt="logo">
+                            <img src="/static/images/brand/logo-3.png" class="header-brand-img light-logo1" alt="logo">
+                        </a>
+                        <!-- LOGO -->
+                    </div>
+                    <div class="main-sidemenu">
+                        <div class="slide-left disabled" id="slide-left"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"/></svg></div>
+                        <ul class="side-menu">
+                            <!-- <li class="slide" style="margin-left:50px ; margin-top: 30px;">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="#"><span class="side-menu__label customer-ion">Dashboard</span></a>
+                                
+                            </li> -->
+                            <!-- <li class="slide" style="margin:15px 0 0 50px ;"> -->
+                            {% comment %} <li class="slide" style="margin-left:50px ; margin-top: 30px;">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="/priony-admin/admin-edit-plans"><span class="side-menu__label  post-icon">Plans</span></a>
+                            
+                            </li> {% endcomment %}
+                           
+
+                            <li class="slide" style="margin-left:50px ; margin-top:10px;">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="all-technicians-profiles"><span class="side-menu__label video-icon">Technicians</span><i class="angle fe fe-chevron-right hor-angle"></i></a>
+                            </li>
+
+                            <li class="slide" style="margin-left:50px ; margin-top:10px;">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="all-users-profiles"><span class="side-menu__label MyMatch-icon">Users</span><i class="angle fe fe-chevron-right hor-angle"></i></a>
+                            </li>
+
+                            <!-- <li class="slide" style="margin-left:50px ; margin-top:10px;">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="/priony-admin/admin-premium-users"><span class="side-menu__label Premium-icon">Premium users</span><i class="angle fe fe-chevron-right hor-angle"></i></a>
+                            </li> -->
+
+                            <!-- <li class="slide" style="margin-left:50px ; margin-top:10px;">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="/douryou-admin/admin-staff"><span class="side-menu__label Staff-icon">Staff</span><i class="angle fe fe-chevron-right hor-angle"></i></a>
+                            </li> -->
+                            
+                        </ul>
+                        <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"/></svg></div>
+                    </div>
+                </div>
+                <!--/APP-SIDEBAR-->
+            </div>
+
+            <!--app-content open-->
+            <div class="main-content app-content mt-0">
+                <div class="side-app">
+
+                    <!-- CONTAINER -->
+                    <div class="main-container container-fluid">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">X</button>
+                            <span class=""><svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 24 24"><path fill="#13bfa6" d="M10.3125,16.09375a.99676.99676,0,0,1-.707-.293L6.793,12.98828A.99989.99989,0,0,1,8.207,11.57422l2.10547,2.10547L15.793,8.19922A.99989.99989,0,0,1,17.207,9.61328l-6.1875,6.1875A.99676.99676,0,0,1,10.3125,16.09375Z" opacity=".99"/><path fill="#71d8c9" d="M12,2A10,10,0,1,0,22,12,10.01146,10.01146,0,0,0,12,2Zm5.207,7.61328-6.1875,6.1875a.99963.99963,0,0,1-1.41406,0L6.793,12.98828A.99989.99989,0,0,1,8.207,11.57422l2.10547,2.10547L15.793,8.19922A.99989.99989,0,0,1,17.207,9.61328Z"/></svg></span>
+                            <strong>{{ message }}</strong>
+                            <!-- <hr class="message-inner-separator"> 
+                            <p>You successfully read this important alert message.</p> -->
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                        {% block body %}
+                        {% endblock body %}
+
+
+                    </div>
+                    <!-- CONTAINER CLOSED -->
+                </div>
+            </div>
+            <!--app-content closed-->
+        </div>
+
+    </div>
+    <script>
+        var AddThisJSLoaded = false; //AddThis not loaded yet
+        var clickedOnShare = false; //share button is not clicked
+
+        //replace with your publisher ID
+        //it's in your profile setting
+        var AddThisPubID = "ra-5b056b31a239b6eb";
+        var AddThisJS =
+        "//s7.addthis.com/js/300/addthis_widget.js#pubid=" + AddThisPubID;
+
+        function share(button) {
+        if (navigator.share) {
+            //check if Web Share API is supported by the browser
+            var url = document.location.href;
+            var title = document.getElementsByTagName("title")[0].innerHTML;
+            var description = document
+            .querySelector("meta[name=description]")
+            .getAttribute("content");
+
+            navigator.share({
+            title: title,
+            text: description,
+            url: url
+            });
+        } else {
+            if (!AddThisJSLoaded && !clickedOnShare) {
+            //when AddThis not loaded and share button isn't clicked
+            clickedOnShare = true; //share button is clicked
+            showLoading(button);
+            shareByAddThis(button);
+            } else {
+            toggleAddThisButtons(button);
+            }
+        }
+        }
+
+        function shareByAddThis(button) {
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = AddThisJS;
+
+        script.onload = function() {
+            clickedOnShare = false; //AddThis JS is loaded
+            addthis.user.ready(function(data) {
+            AddThisJSLoaded = true; //AddThis loaded and ready to use
+            hideLoading(button);
+            showAddThisButtons(button);
+            });
+        };
+
+        script.onerror = function() {
+            clickedOnShare = false; //AddThis JS failed to load
+            hideLoading(button);
+        };
+
+        document.body.appendChild(script);
+        }
+
+        function showLoading(button) {
+        button.classList.add("loading");
+        }
+
+        function hideLoading(button) {
+        button.classList.remove("loading");
+        }
+
+        function showAddThisButtons(button) {
+        button.classList.add("showAddThisButtons");
+        }
+
+        function toggleAddThisButtons(button) {
+        button.classList.toggle("showAddThisButtons");
+        }
+
+    </script>
+    <!-- BACK-TO-TOP -->
+    <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JQUERY JS -->
+    <script src="/static/js/jquery.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="/static/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- INPUT MASK JS-->
+    <script src="/static/plugins/input-mask/jquery.mask.min.js"></script>
+
+    <!-- SIDE-MENU JS-->
+    <script src="/static/plugins/sidemenu/sidemenu.js"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="/static/plugins/sidebar/sidebar.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <!-- <script src="/static/plugins/p-scroll/perfect-scrollbar.js"></script> -->
+    <script src="/static/plugins/p-scroll/pscroll.js"></script>
+    <script src="/static/plugins/p-scroll/pscroll-1.js"></script>
+
+    <!-- FILE UPLOADES JS -->
+    <script src="/static/plugins/fileuploads/js/fileupload.js"></script>
+    <script src="/static/plugins/fileuploads/js/file-upload.js"></script>
+
+    <!-- INTERNAL Bootstrap-Datepicker js--> 
+    <script src="/static/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- INTERNAL File-Uploads Js-->
+    <script src="/static/plugins/fancyuploder/jquery.ui.widget.js"></script>
+    <script src="/static/plugins/fancyuploder/jquery.fileupload.js"></script>
+    <script src="/static/plugins/fancyuploder/jquery.iframe-transport.js"></script>
+    <script src="/static/plugins/fancyuploder/jquery.fancy-fileupload.js"></script>
+    <script src="/static/plugins/fancyuploder/fancy-uploader.js"></script>
+
+    <!-- SELECT2 JS -->
+    <script src="/static/plugins/select2/select2.full.min.js"></script>
+    <script src="/static/js/select2.js"></script>
+
+    <!-- BOOTSTRAP-DATERANGEPICKER JS -->
+    <script src="/static/plugins/bootstrap-daterangepicker/moment.min.js"></script>
+    <script src="/static/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- INTERNAL Bootstrap-Datepicker js-->
+    <script src="/static/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+    <!-- INTERNAL Sumoselect js-->
+    <script src="/static/plugins/sumoselect/jquery.sumoselect.js"></script>
+
+    <!-- TIMEPICKER JS -->
+    <script src="/static/plugins/time-picker/jquery.timepicker.js"></script>
+    <script src="/static/plugins/time-picker/toggles.min.js"></script>
+
+    <!-- INTERNAL intlTelInput js-->
+    <script src="/static/plugins/intl-tel-input-master/intlTelInput.js"></script>
+    <script src="/static/plugins/intl-tel-input-master/country-select.js"></script>
+    <script src="/static/plugins/intl-tel-input-master/utils.js"></script>
+
+    <!-- INTERNAL jquery transfer js-->
+    <script src="/static/plugins/jQuerytransfer/jquery.transfer.js"></script>
+
+    <!-- INTERNAL multi js-->
+    <script src="/static/plugins/multi/multi.min.js"></script>
+
+    <!-- DATEPICKER JS -->
+    <script src="/static/plugins/date-picker/date-picker.js"></script>
+    <script src="/static/plugins/date-picker/jquery-ui.js"></script>
+    <script src="/static/plugins/input-mask/jquery.maskedinput.js"></script>
+
+    <!-- COLOR PICKER JS -->
+    <script src="/static/plugins/pickr-master/pickr.es5.min.js"></script>
+    <script src="/static/js/picker.js"></script>
+
+    <!-- MULTI SELECT JS-->
+    <script src="/static/plugins/multipleselect/multiple-select.js"></script>
+    <script src="/static/plugins/multipleselect/multi-select.js"></script>
+
+    <!-- FORMELEMENTS JS -->
+    <script src="/static/js/formelementadvnced.js"></script>
+    <script src="/static/js/form-elements.js"></script>
+
+    <!-- Color Theme js -->
+    <script src="/static/js/themeColors.js"></script>
+
+    <!-- Sticky js -->
+    <script src="/static/js/sticky.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="/static/js/custom.js"></script>
+
+    <!-- FORMVALIDATION JS -->
+    <script src="/static/js/form-validation.js"></script>
+
+
+    
+    <!-- FORM WIZARD JS-->
+    <script src="/static/plugins/formwizard/jquery.smartWizard.js"></script>
+    <script src="/static/plugins/formwizard/fromwizard.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="/static/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="/static/plugins/p-scroll/pscroll.js"></script>
+    <script src="/static/plugins/p-scroll/pscroll-1.js"></script>
+
+    <!-- INTERNAl Jquery.steps js -->
+    <script src="/static/plugins/jquery-steps/jquery.steps.min.js"></script>
+    <!-- <script src="/static/plugins/parsleyjs/parsley.min.js"></script> -->
+
+    <!-- DATA TABLE JS-->
+    <!-- <script src="/static/plugins/datatable/js/jquery.dataTables.min.js"></script> -->
+    <script src="/static/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="/static/plugins/datatable/js/dataTables.buttons.min.js"></script>
+    <script src="/static/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
+    <script src="/static/plugins/datatable/js/jszip.min.js"></script>
+    <!-- <script src="/static/plugins/datatable/pdfmake/pdfmake.min.js"></script> -->
+    <script src="/static/plugins/datatable/pdfmake/vfs_fonts.js"></script>
+    <script src="/static/plugins/datatable/js/buttons.html5.min.js"></script>
+    <script src="/static/plugins/datatable/js/buttons.print.min.js"></script>
+    <script src="/static/plugins/datatable/js/buttons.colVis.min.js"></script>
+    <script src="/static/plugins/datatable/dataTables.responsive.min.js"></script>
+    <script src="/static/plugins/datatable/responsive.bootstrap5.min.js"></script>
+    <script src="/static/js/table-data.js"></script>
+
+</body>
+
+</html>
