@@ -32,9 +32,7 @@ class TechnicianWork(models.Model):
     longnitude = models.DecimalField(max_digits=8, decimal_places=3)
     latitude = models.DecimalField(max_digits=8, decimal_places=3)
     activate = models.BooleanField(default=False)
-    
-    def __str__(self):
-        return self.user
+
 
 
 
