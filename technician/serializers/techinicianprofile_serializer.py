@@ -2,7 +2,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 
 from user.models import UserProfile
-from technician.models import Categories,SubCategories
+from technician.models import Categories,SubCategories,TechnicianWork
 
 
 class TechnicianProfileInputSerializer(serializers.Serializer):
@@ -70,5 +70,21 @@ class TechnicianCategoriesSerializer(serializers.ModelSerializer):
             return SubCategoriesSerializer(sub_catehory,many=True).data
         else:
             return []
-        
+
+
+class TechnicianWorkInputSerializer(serializers.Serializer):
+    user = serializers.CharField(required=False)
+    price = serializers.CharField(required=False)
+    time = serializers.CharField(required=False)
+    category_id = serializers.IntegerField(required=False)
+    longnitude= serializers.DecimalField(max_digits=8, decimal_places=3,required=False)
+    latitude= serializers.DecimalField(max_digits=8, decimal_places=3,required=False)
+    activate= serializers.BooleanField(required=False)
+
+class TechnicianWorkoutputSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TechnicianWork
+        fields = ('id',"sub_category",'price',"time","longnitude","latitude","activate")
+
+
 

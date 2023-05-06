@@ -2,7 +2,7 @@
 
 from django.db import transaction
 from user.models import UserProfile
-from technician.models import Categories,SubCategories
+from technician.models import Categories,SubCategories,TechnicianWork
 
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
@@ -78,9 +78,6 @@ class TechnicianRegisterProfileService:
             raise ex
         
 
-
-
-
 class TechnicianCategoriesService:
     @staticmethod
     @transaction.atomic
@@ -88,13 +85,46 @@ class TechnicianCategoriesService:
         user_id
     ):
         try:
-            print(user_id)
             user_categerory=UserProfile.objects.get(id=user_id)
-            print(user_categerory.categories)
             if user_categerory:
                 sub_category=Categories.objects.filter(categories=user_categerory.categories)
-                print(sub_category)
                 return sub_category
+        except Exception as e:
+            raise e
+
+class TechnicianWorkService:
+    @staticmethod
+    @transaction.atomic
+    def post_technician_work(
+        user_id,
+        category_id=None,
+        price=None,
+        time=None,
+        longnitude=None,
+        latitude=None,
+        activate=False,
+
+             ):
+        try:
+            if category_id:
+                category_id=str(category_id)
+                sub_category_ids = category_id.split(",")
+                sub_category_ids = [int(x) for x in sub_category_ids]
+                sub_category_list = []
+                for sub_category in sub_category_ids:
+                    user_profile = UserProfile.objects.filter(id=user_id).last()
+                    sub_categorys=SubCategories.objects.get(id=sub_category)
+                    sub_category_list.append(TechnicianWork(
+                        user_id=user_profile.id,
+                        sub_category=sub_categorys,
+                        price=price,
+                        time=time,
+                        longnitude=longnitude,latitude=latitude,activate=activate
+
+                    ))
+                user_technician_work = TechnicianWork.objects.bulk_create(sub_category_list)
+                return user_technician_work
+
         except Exception as e:
             raise e
 

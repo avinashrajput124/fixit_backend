@@ -48,3 +48,5 @@ class UserAddressInputSerializer(serializers.Serializer):
 
 class UserProfilepicInputSerializer(serializers.Serializer):
     profile_image = serializers.FileField(required=False)
+
+
