@@ -159,6 +159,7 @@
 
                                 <div class="row">
                                     {% for Category in SubCategorie %}
+                                    {% if i.id == Category.category.id %}
                                     <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
                                         <a data-bs-toggle="modal" data-bs-target="#addsubcatagiory{{i.id}}">
                                             <div class="card">
@@ -171,6 +172,7 @@
                                             </div>
                                         </a>
                                     </div>
+                                    {% endif %}
                                     {% endfor %}
                             </div>
                         </div>
