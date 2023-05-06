@@ -25,11 +25,8 @@ SECRET_KEY = 'django-insecure-og%=rapxvbv$*hihi-$c2s_es6@5id-kpr_uqxx0w+ono%@f9d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = []
-=======
+
 ALLOWED_HOSTS = ["fixit.space", "127.0.0.1"]
->>>>>>> 0e26623b31f17df0184c3aed6e77c0ea33a70aea
 
 
 # Application definition
