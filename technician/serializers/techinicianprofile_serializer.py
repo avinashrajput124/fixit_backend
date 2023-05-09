@@ -84,7 +84,9 @@ class TechnicianWorkInputSerializer(serializers.Serializer):
 class TechnicianWorkoutputSerializer(serializers.ModelSerializer):
     class Meta:
         model = TechnicianWork
-        fields = ('id',"sub_category",'price',"time","longnitude","latitude","activate")
+        fields = ('id',"user","sub_category",'price',"time","longnitude","latitude","activate")
 
+class TechnicianseacrinputSerializer(serializers.Serializer):
+    sub_category=serializers.CharField(required=False)
 
 

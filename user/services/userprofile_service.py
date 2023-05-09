@@ -1,10 +1,11 @@
 
 
+
 from django.db import transaction
 from user.models import UserProfile
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from technician.models import Categories,SubCategories
+from technician.models import Categories,SubCategories,TechnicianWork
 
 
 
@@ -150,4 +151,16 @@ class UserCategoriesService:
 
         except Exception as e:
             raise e
+        
+from django.db.models import Q
+class TechnicianSearchService:
+    @staticmethod
+    def get_technician_search(categories,sub_category):
+        try:
+            if categories or sub_category:
 
+                technician_searc = TechnicianWork.objects.filter(sub_category__category__categories=categories,activate=True) or TechnicianWork.objects.filter(sub_category__sub_categories=sub_category,activate=True)
+                return technician_searc
+
+        except Exception as e:
+            raise e

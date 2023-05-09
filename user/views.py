@@ -11,9 +11,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from user.serializers.userprofile import UserProfileInputSerializer,UserProfileSerializer,UserProfileLoginInputSerializer,UserAddressInputSerializer,UserProfilepicInputSerializer
-from user.services.userprofile_service import UserRegisterProfileService,UserCategoriesService
+from user.services.userprofile_service import UserRegisterProfileService,UserCategoriesService,TechnicianSearchService
 from user.utils import success_http_response, error_http_response
-from technician.serializers.techinicianprofile_serializer import CategoriesSerializer,SubCategoriesSerializer
+from technician.serializers.techinicianprofile_serializer import TechnicianseacrinputSerializer,CategoriesSerializer,TechnicianWorkoutputSerializer,SubCategoriesSerializer
 class UserAlreadyExistsRestApi(GenericAPIView):
     permission_classes = [AllowAny, ]
 
@@ -186,6 +186,29 @@ class SubCategeriousRestApi(GenericAPIView):
                 data=serializer.data,
                 status=status.HTTP_200_OK
             )
+
+        except ValidationError as e:
+            return error_http_response(message=str(e.message))
+        except Exception as e:
+            return error_http_response(message=str(e))
+        
+class TechnicianSerachRestApi(GenericAPIView):
+
+    def get(self, request):
+        try:
+            filter_fields = {
+                'categories': request.query_params.get('categories', None),
+                # 'sub_category': request.query_params.get('sub_category', None),
+            }
+            serializer = TechnicianseacrinputSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                validated_data = serializer.validated_data
+                search_categerious = TechnicianSearchService.get_technician_search(**filter_fields,**validated_data)
+                serializer = TechnicianWorkoutputSerializer(search_categerious, many=True)
+                return Response(
+                    data=serializer.data,
+                    status=status.HTTP_200_OK
+                )
 
         except ValidationError as e:
             return error_http_response(message=str(e.message))
