@@ -1,7 +1,7 @@
 from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 
-from user.models import UserProfile
+from user.models import UserProfile,TechnicianHire
 
 class UserProfileLoginInputSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
@@ -49,4 +49,20 @@ class UserAddressInputSerializer(serializers.Serializer):
 class UserProfilepicInputSerializer(serializers.Serializer):
     profile_image = serializers.FileField(required=False)
 
+
+class HireTechnicianInputSerializer(serializers.Serializer):
+    technician = serializers.CharField(required=False)
+    address = serializers.CharField(required=False)
+    distance = serializers.CharField(required=False)
+    date = serializers.CharField(required=False)
+
+class TechnicianWorkDetailsInputSerializer(serializers.Serializer):
+    is_accepted = serializers.BooleanField(required=False)
+    is_rejected = serializers.BooleanField(required=False)
+
+
+class HireTechnicianOutputSerializer(serializers.Serializer):
+    class Meta:
+        model = TechnicianHire
+        fields = ('id', 'technician', 'user',"address","distance","date")
 

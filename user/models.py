@@ -32,6 +32,19 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
+class TechnicianHire(models.Model):
+    technician=models.ForeignKey(UserProfile,on_delete=models.CASCADE,related_name='technician')
+    user=models.ForeignKey(UserProfile,on_delete=models.CASCADE,related_name='user')
+    address=models.CharField(max_length=500,null=True, blank=True)
+    distance=models.CharField(max_length=255,null=True, blank=True)
+    date=models.CharField(max_length=500,null=True, blank=True)
+
+
+class TechnicianWorkDetails(models.Model):
+    technicianhire=models.ForeignKey(TechnicianHire,on_delete=models.CASCADE,related_name='techniciandetails')
+    is_accepted=models.BooleanField(default=False)
+    is_rejected=models.BooleanField(default=False)
+
 
 
 

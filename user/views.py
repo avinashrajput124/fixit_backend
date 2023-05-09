@@ -10,10 +10,10 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from user.serializers.userprofile import UserProfileInputSerializer,UserProfileSerializer,UserProfileLoginInputSerializer,UserAddressInputSerializer,UserProfilepicInputSerializer
+from user.serializers.userprofile import UserProfileInputSerializer,HireTechnicianOutputSerializer,HireTechnicianInputSerializer,UserProfileSerializer,UserProfileLoginInputSerializer,UserAddressInputSerializer,UserProfilepicInputSerializer
 from user.services.userprofile_service import UserRegisterProfileService,UserCategoriesService,TechnicianSearchService
 from user.utils import success_http_response, error_http_response
-from technician.serializers.techinicianprofile_serializer import TechnicianseacrinputSerializer,CategoriesSerializer,TechnicianWorkoutputSerializer,SubCategoriesSerializer
+from technician.serializers.techinicianprofile_serializer import CategoriesSerializer,TechnicianWorkoutputSerializer,SubCategoriesSerializer
 class UserAlreadyExistsRestApi(GenericAPIView):
     permission_classes = [AllowAny, ]
 
@@ -193,25 +193,41 @@ class SubCategeriousRestApi(GenericAPIView):
             return error_http_response(message=str(e))
         
 class TechnicianSerachRestApi(GenericAPIView):
-
     def get(self, request):
         try:
             filter_fields = {
                 'categories': request.query_params.get('categories', None),
-                # 'sub_category': request.query_params.get('sub_category', None),
+                'sub_category': request.query_params.get('sub_category', None),
             }
-            serializer = TechnicianseacrinputSerializer(data=request.data)
-            if serializer.is_valid(raise_exception=True):
-                validated_data = serializer.validated_data
-                search_categerious = TechnicianSearchService.get_technician_search(**filter_fields,**validated_data)
-                serializer = TechnicianWorkoutputSerializer(search_categerious, many=True)
-                return Response(
-                    data=serializer.data,
-                    status=status.HTTP_200_OK
-                )
-
+            search_categerious = TechnicianSearchService.get_technician_search(**filter_fields)
+            serializer = TechnicianWorkoutputSerializer(search_categerious, many=True)
+            return Response(
+                data=serializer.data,
+                status=status.HTTP_200_OK
+            )
         except ValidationError as e:
             return error_http_response(message=str(e.message))
         except Exception as e:
             return error_http_response(message=str(e))
 
+class HireTechnicianRestApi(GenericAPIView):
+    permission_classes = [IsAuthenticated, ]
+    def post(self, request):
+        try:
+            user_id=request.user.id
+            print(user_id)
+            serializer = HireTechnicianInputSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                validated_data = serializer.validated_data
+                technicainDetails = TechnicianSearchService.post_hire_technician(user_id,**validated_data)
+                return success_http_response(
+                    message=HireTechnicianOutputSerializer(technicainDetails).data,
+
+                )
+
+        except ValidationError as e:
+            return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist as e:
+            return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return error_http_response(message=str(e))

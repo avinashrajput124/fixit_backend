@@ -1,12 +1,12 @@
 
 
-
+from django.db.models import Q
 from django.db import transaction
 from user.models import UserProfile
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from technician.models import Categories,SubCategories,TechnicianWork
-
+from user.models import TechnicianHire,TechnicianWorkDetails
 
 
 class UserRegisterProfileService:
@@ -152,15 +152,35 @@ class UserCategoriesService:
         except Exception as e:
             raise e
         
-from django.db.models import Q
 class TechnicianSearchService:
     @staticmethod
     def get_technician_search(categories,sub_category):
         try:
             if categories or sub_category:
-
-                technician_searc = TechnicianWork.objects.filter(sub_category__category__categories=categories,activate=True) or TechnicianWork.objects.filter(sub_category__sub_categories=sub_category,activate=True)
-                return technician_searc
-
+                allQs = Q()
+                if categories is not None: 
+                    allQs |= Q(sub_category__category__categories__icontains=categories ,activate=True)
+                if sub_category is not None:                     
+                    allQs |= Q(sub_category__sub_categories__icontains=sub_category,activate=True)
+            result = TechnicianWork.objects.filter(allQs)
+            return result
+        except Exception as e:
+            raise e
+    @staticmethod
+    def post_hire_technician(
+        user_id,
+        technician,
+        address=None,
+        distance=None,
+        date=None):
+        try:
+            hire=TechnicianHire.objects.create(user=user_id,technician=technician,
+                                               address=address,distance=distance,
+                                            date=date
+                                            )
+            if hire:
+                technicianworkDetails=TechnicianWorkDetails.objects.create(technicianhire=hire)
+            return hire
+            
         except Exception as e:
             raise e

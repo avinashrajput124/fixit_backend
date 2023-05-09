@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from user.models import UserProfile
 from technician.models import Categories,SubCategories,TechnicianWork
-
+from user.serializers.userprofile import UserProfileSerializer
 
 class TechnicianProfileInputSerializer(serializers.Serializer):
     username = serializers.CharField(required=False)
@@ -82,11 +82,20 @@ class TechnicianWorkInputSerializer(serializers.Serializer):
     activate= serializers.BooleanField(required=False)
 
 class TechnicianWorkoutputSerializer(serializers.ModelSerializer):
+    technician_hire_detail = serializers.SerializerMethodField('technician_hire_details')
+
     class Meta:
         model = TechnicianWork
-        fields = ('id',"user","sub_category",'price',"time","longnitude","latitude","activate")
+        fields = ('id',"user","sub_category",'price',"time","longnitude","latitude","activate","technician_hire_detail")
 
-class TechnicianseacrinputSerializer(serializers.Serializer):
-    sub_category=serializers.CharField(required=False)
+    @staticmethod
+    def technician_hire_details(obj):
+        hire_details=UserProfile.objects.filter(user_id=obj.user.user_id)
+        print('avi')
+        if hire_details:
+            return UserProfileSerializer(hire_details,many=True).data
+        else:
+            return []
+
 
 
