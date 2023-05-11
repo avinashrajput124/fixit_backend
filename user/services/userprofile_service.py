@@ -174,12 +174,14 @@ class TechnicianSearchService:
         distance=None,
         date=None):
         try:
-            hire=TechnicianHire.objects.create(user=user_id,technician=technician,
+            print(technician)
+            hire=TechnicianHire.objects.create(user_id=user_id,technician_id=technician,
                                                address=address,distance=distance,
                                             date=date
                                             )
+            print(hire)
             if hire:
-                technicianworkDetails=TechnicianWorkDetails.objects.create(technicianhire=hire)
+                 technicianworkDetails=TechnicianWorkDetails.objects.create(technicianhire_id=hire.id)
             return hire
             
         except Exception as e:

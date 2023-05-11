@@ -51,7 +51,6 @@ class UserProfilepicInputSerializer(serializers.Serializer):
 
 
 class HireTechnicianInputSerializer(serializers.Serializer):
-    technician = serializers.CharField(required=False)
     address = serializers.CharField(required=False)
     distance = serializers.CharField(required=False)
     date = serializers.CharField(required=False)

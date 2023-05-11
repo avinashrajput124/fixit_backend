@@ -215,16 +215,21 @@ class HireTechnicianRestApi(GenericAPIView):
     def post(self, request):
         try:
             user_id=request.user.id
-            print(user_id)
+            filter_fields = {
+                'technician': request.query_params.get('technician', None),
+            }
             serializer = HireTechnicianInputSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
                 validated_data = serializer.validated_data
-                technicainDetails = TechnicianSearchService.post_hire_technician(user_id,**validated_data)
+                technicainDetails = TechnicianSearchService.post_hire_technician(user_id,**validated_data,**filter_fields)
+                print(technicainDetails)
                 return success_http_response(
                     message=HireTechnicianOutputSerializer(technicainDetails).data,
 
                 )
 
+
+ 
         except ValidationError as e:
             return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
         except ObjectDoesNotExist as e:
