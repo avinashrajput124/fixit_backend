@@ -60,8 +60,8 @@ class TechnicianWorkDetailsInputSerializer(serializers.Serializer):
     is_rejected = serializers.BooleanField(required=False)
 
 
-class HireTechnicianOutputSerializer(serializers.Serializer):
+class HireTechnicianOutputSerializer(serializers.ModelSerializer):
     class Meta:
         model = TechnicianHire
-        fields = ('id', 'technician', 'user',"address","distance","date")
+        fields = "__all__"
 

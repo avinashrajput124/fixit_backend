@@ -14,8 +14,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from technician.serializers.techinicianprofile_serializer import TechnicianProfileInputSerializer,TechnicianProfileLoginInputSerializer,\
-    TechnicianProfileSerializer,CategoriesSerializer,SubCategoriesSerializer,TechnicianCategoriesSerializer,TechnicianWorkInputSerializer,TechnicianWorkoutputSerializer
-from technician.services.technician_profile import TechnicianRegisterProfileService,TechnicianCategoriesService,TechnicianWorkService
+    TechnicianProfileSerializer,CategoriesSerializer,SubCategoriesSerializer,TechnicianWorkScreenHomeOutputSerializer,TechnicianCategoriesSerializer,TechnicianWorkInputSerializer,TechnicianWorkoutputSerializer
+from technician.services.technician_profile import TechnicianRegisterProfileService,TechnicianScreenWorkServices,TechnicianCategoriesService,TechnicianWorkService
 from user.utils import success_http_response, error_http_response
 
 
@@ -127,3 +127,21 @@ class TechnicianWorkRestApi(GenericAPIView):
             return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return error_http_response(message=str(e))
+        
+class TechnicianHomeScreenRestApi(GenericAPIView):
+    permission_classes = [IsAuthenticated, ]
+    def get(self, request):
+        try:
+            user_id=request.user.id
+            technicianwork = TechnicianScreenWorkServices.get_technician_screen_online_work(user_id)
+            return Response(
+                data=TechnicianWorkScreenHomeOutputSerializer(technicianwork, many=True).data,
+                status=status.HTTP_200_OK
+            )
+        except ValidationError as e:
+            return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
+        except ObjectDoesNotExist as e:
+            return error_http_response(message=str(e), status_code=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return error_http_response(message=str(e))
+        

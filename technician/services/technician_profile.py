@@ -1,7 +1,7 @@
 
 
 from django.db import transaction
-from user.models import UserProfile
+from user.models import UserProfile,TechnicianHire
 from technician.models import Categories,SubCategories,TechnicianWork
 
 from django.contrib.auth import authenticate
@@ -130,4 +130,16 @@ class TechnicianWorkService:
 
 
 
+class TechnicianScreenWorkServices:
+    @staticmethod
+    @transaction.atomic
+    def get_technician_screen_online_work(
+        user_id
+    ):
+        try:
+            user_categerory=TechnicianHire.objects.filter(technician_id=user_id)
+            print(user_categerory)
+            return user_categerory
+        except Exception as e:
+            raise e
 

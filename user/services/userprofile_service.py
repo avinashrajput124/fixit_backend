@@ -174,12 +174,10 @@ class TechnicianSearchService:
         distance=None,
         date=None):
         try:
-            print(technician)
             hire=TechnicianHire.objects.create(user_id=user_id,technician_id=technician,
                                                address=address,distance=distance,
                                             date=date
                                             )
-            print(hire)
             if hire:
                  technicianworkDetails=TechnicianWorkDetails.objects.create(technicianhire_id=hire.id)
             return hire

@@ -1,7 +1,7 @@
 from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 
-from user.models import UserProfile
+from user.models import UserProfile,TechnicianHire
 from technician.models import Categories,SubCategories,TechnicianWork
 from user.serializers.userprofile import UserProfileSerializer
 
@@ -96,6 +96,31 @@ class TechnicianWorkoutputSerializer(serializers.ModelSerializer):
             return UserProfileSerializer(hire_details,many=True).data
         else:
             return []
+
+
+class TechnicianWorkScreenHomeOutputSerializer(serializers.ModelSerializer):
+    technician_profile_detail = serializers.SerializerMethodField('technician_work_details')
+    customer_profile_detail = serializers.SerializerMethodField('customer_profile_details')
+    
+    class Meta:
+        model = TechnicianHire
+        fields = ('id',"technician","user",'address',"distance","date","technician_profile_detail","customer_profile_detail")
+
+    @staticmethod
+    def technician_work_details(obj):
+        hire_details=UserProfile.objects.filter(user_id=obj.technician.user_id)
+        if hire_details:
+            return UserProfileSerializer(hire_details,many=True).data
+        else:
+            return []
+    @staticmethod
+    def customer_profile_details(obj):
+        user_details=UserProfile.objects.filter(user_id=obj.user.user_id)
+        if user_details:
+            return UserProfileSerializer(user_details,many=True).data
+        else:
+            return []
+
 
 
 
