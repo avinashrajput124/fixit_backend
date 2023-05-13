@@ -1,6 +1,6 @@
 from django.urls import path
 
-from technician.views import TechnicianExistsRestApi,TechnicianHomeScreenRestApi,TechnicianRegisterRestApi,TechnicianAlreadyExistsRestApi,TechnicianCategeriosRestApi,TechnicianWorkRestApi
+from technician.views import TechnicianExistsRestApi,TechnicianOnlineOfflineDataRestApi,TechnicianHomeScreenRestApi,TechnicianRegisterRestApi,TechnicianAlreadyExistsRestApi,TechnicianCategeriosRestApi,TechnicianWorkRestApi
 from user.views import UserRegisterRestApi,UserExistsRestApi,UserAlreadyExistsRestApi
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
     path('technician-subcategory/',TechnicianCategeriosRestApi.as_view()),
     path('technician-post-work/',TechnicianWorkRestApi.as_view()),
     path('technician-all-work/',TechnicianHomeScreenRestApi.as_view()),
+    path('technician-online-offline/',TechnicianOnlineOfflineDataRestApi.as_view()),
 
 ]
 

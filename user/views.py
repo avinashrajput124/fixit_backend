@@ -225,11 +225,7 @@ class HireTechnicianRestApi(GenericAPIView):
                 print(technicainDetails)
                 return success_http_response(
                     message=HireTechnicianOutputSerializer(technicainDetails).data,
-
                 )
-
-
- 
         except ValidationError as e:
             return error_http_response(message=str(e.message), status_code=status.HTTP_400_BAD_REQUEST)
         except ObjectDoesNotExist as e:

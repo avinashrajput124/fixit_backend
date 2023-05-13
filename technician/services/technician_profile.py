@@ -142,4 +142,26 @@ class TechnicianScreenWorkServices:
             return user_categerory
         except Exception as e:
             raise e
+        
+    @staticmethod
+    @transaction.atomic
+    def technician_offline_online(
+        user_id,
+        activate,
+    ):
+        try:
+            technician_activate=TechnicianWork.objects.filter(user__id=user_id)
+            if technician_activate.exists():
+                actvates=TechnicianWork.objects.get(user__id=user_id)
+                if activate==True:
+                    actvates.activate=True
+                    actvates.save()
+                    return {'technician':'online'}
+                else:
+                    actvates.activate=False
+                    actvates.save()
+                    return {'technician':'offline'}
+            return ObjectDoesNotExist('Technician work Not exists')
+        except Exception as e:
+            raise e
 

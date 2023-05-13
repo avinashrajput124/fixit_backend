@@ -19,3 +19,4 @@ urlpatterns = [
     path('user-search-technician/',TechnicianSerachRestApi.as_view()),
     path('user-hire-technician/',HireTechnicianRestApi.as_view())
 ]
+    

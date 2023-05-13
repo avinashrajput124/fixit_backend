@@ -121,6 +121,10 @@ class TechnicianWorkScreenHomeOutputSerializer(serializers.ModelSerializer):
         else:
             return []
 
+class TechnicianOlineOfflineInputSerializer(serializers.Serializer):
+    activate = serializers.BooleanField(required=False)
+
+
 
 
 
